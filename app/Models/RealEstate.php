@@ -23,4 +23,24 @@ class RealEstate extends Model
         'comments',
     ];
 
+    /* Mutators */
+
+    /*        
+        Creating mutators to handle date format to use on all the app, 
+        if somethings need to be changed we replace the format on RealEstate.php only instead of all the API calls following DRY principle 
+    */
+    public function getCreatedAtTextAttribute()
+    {
+        return $this->created_at !== null ? $this->created_at->format('d/m/Y') : null;
+    }
+    public function getUpdatedAtTextAttribute()
+    {
+        return $this->updated_at !== null ? $this->updated_at->format('d/m/Y') : null;
+    }
+    public function getDeletedAtTextAttribute()
+    {
+        return $this->deleted_at !== null ? $this->deleted_at->format('d/m/Y') : null;
+    }
+
+
 }
