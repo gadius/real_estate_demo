@@ -6,6 +6,7 @@ use App\Http\Requests\RealEstateRequest;
 use App\Http\Controllers\BaseController;
 use App\Models\RealEstate;
 use App\Http\Resources\RealEstateResource;
+use App\Http\Resources\RealEstateCollection;
 
 
 class RealEstateController extends BaseController
@@ -17,9 +18,9 @@ class RealEstateController extends BaseController
      */
     public function index()
     {
-        $realestate = RealEstate::all();
+        $realestate = RealEstate::select(['id','name','real_state_type','city','country'])->get();
       
-        return $this->sendSuccess(RealEstateResource::collection($realestate), 'RealEstate retrieved successfully.');
+        return $this->sendSuccess(new RealEstateCollection($realestate), 'RealEstate retrieved successfully.');
     }
     /**
      * Store a newly created resource in storage.
@@ -61,7 +62,7 @@ class RealEstateController extends BaseController
     public function update(RealEstateRequest $request, RealEstate $realestate)
     {                
         $realestate->update($request->all());  
-           
+
         return $this->sendSuccess(new RealEstateResource($realestate), 'RealEstate updated successfully.');
     }
    
