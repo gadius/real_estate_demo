@@ -33,7 +33,11 @@ export default function useRealEstates() {
         }
 
     }
-
+    
+    const destroyRealEstate = async (id) => {
+        await axios.delete(`/api/realestate/${id}`)
+    }
+    
     const updateRealEstate = async (id) => {
         errors.value = ''
         try {
@@ -48,6 +52,9 @@ export default function useRealEstates() {
         }
     }
 
+
+    
+
     return {
         errors,
         realestate,
@@ -55,6 +62,7 @@ export default function useRealEstates() {
         getRealEstate,
         getRealEstates,
         storeRealEstate,
-        updateRealEstate
+        updateRealEstate,
+        destroyRealEstate
     }
 }
