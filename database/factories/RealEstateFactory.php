@@ -29,11 +29,7 @@ class RealEstateFactory extends Factory
             'internal_number' => $this->faker->text(12),
             'neighborhood' => $this->faker->text(128),
             'city' => $this->faker->text(64),
-            'country' => $this->faker->randomElement([
-                "MX",
-                "US",
-                "JP"
-            ]),
+            'country' => $this->faker->randomElement(array_keys(config('iso3166.codes'))),
             'rooms' => $this->faker->numberBetween(1,30),
             'bathrooms' => $this->faker->numberBetween(1,30),
             'comments' => $this->faker->text(128),
