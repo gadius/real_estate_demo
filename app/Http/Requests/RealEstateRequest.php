@@ -28,13 +28,7 @@ class RealEstateRequest extends FormRequest
     
     public function rules()
     {   
-        /*
-        'porcentaje_descuento' => 'required|numeric|between:0,99',
-        'regla_sugerir_precio_venta' => 'sometimes|max:10',
-        */
-
         $internal_number_regex = '/^[a-zA-Z0-9-]+$/';
-
         $rules = [
             'name' => 'required|max:128',
             'real_state_type' => "required|in:house,department,land,commercial_ground",
@@ -59,7 +53,7 @@ class RealEstateRequest extends FormRequest
     
 
     /*  
-        This code 
+        This code retrieves the failed validation as JSON instead redirecting back to view
     */
     public function failedValidation(Validator $validator)
     {
