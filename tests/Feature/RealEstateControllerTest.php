@@ -97,7 +97,7 @@ class RealEstateControllerTest extends TestCase
     }
 
     /** @test  */    
-    public function everyone_can_modify_realestate_update()
+    public function everyone_can_edit_realestate_update()
     {
         $realestate_data = [
             'name' => 'Name testing',
@@ -140,6 +140,83 @@ class RealEstateControllerTest extends TestCase
         );         
 
         $this->assertDatabaseHas('real_estates', $realestate_data_modified);
+    }
+
+    /** @test  */    
+    public function everyone_can_show_realestate()
+    {
+        $realestate_data = [
+            'name' => 'Name testing',
+            'real_state_type' => 'house',
+            'street' => 'Street name and testing',
+            'external_number' => '123-123',
+            'internal_number' => '123-123',
+            'neighborhood' => 'neighborhood test',
+            'city' => 'La Paz',
+            'country' => 'MX',
+            'rooms' => 10,
+            'bathrooms' => 12,
+            'comments' => 'Comment testing',
+        ];
+
+        $realestate = RealEstate::factory()->create($realestate_data);  
+
+        $this->assertDatabaseHas('real_estates', $realestate_data);
+
+        $this->json('get', "api/realestate/$realestate->id",['Accept' => 'application/json'])
+            ->assertStatus(Response::HTTP_OK)
+            ->assertJson(
+            [
+                'data' => $realestate_data
+            ]
+        )
+        ->assertJsonStructure(
+            [
+                'data' => [
+                    'id',
+                    'name',
+                    'real_state_type',
+                    'street',
+                    'external_number',
+                    'internal_number',
+                    'neighborhood',
+                    'city',
+                    'country',
+                    'rooms',
+                    'bathrooms',
+                    'comments',
+                    'created_at',
+                    'updated_at',
+                    'deleted_at',
+                ]
+            ]
+        );                     
+    }
+
+    /** @test  */    
+    public function everyone_can_delete_realestate()
+    {
+        $realestate_data = [
+            'name' => 'Name testing',
+            'real_state_type' => 'house',
+            'street' => 'Street name and testing',
+            'external_number' => '123-123',
+            'internal_number' => '123-123',
+            'neighborhood' => 'neighborhood test',
+            'city' => 'La Paz',
+            'country' => 'MX',
+            'rooms' => 10,
+            'bathrooms' => 12,
+            'comments' => 'Comment testing',
+        ];
+
+        $realestate = RealEstate::factory()->create($realestate_data);  
+
+        $this->assertDatabaseHas('real_estates', $realestate_data);
+
+        $this->json('delete', "api/realestate/$realestate->id",['Accept' => 'application/json'])
+            ->assertStatus(Response::HTTP_OK);
+        $this->assertSoftDeleted('real_estates',['id'=> $realestate->id]);  
     }
     
 }
