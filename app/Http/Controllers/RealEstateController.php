@@ -72,10 +72,16 @@ class RealEstateController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RealEstate $realestate)
+    public function destroy($id)
     {
+        $realestate = RealEstate::find($id);
+    
+        if (is_null($realestate)) {
+            return $this->sendError('RealEstate not found.');
+        }
+
         $realestate->delete();
      
-        return $this->sendSuccess([], 'RealEstate deleted successfully.');
+        return $this->sendSuccess(new RealEstateResource($realestate), 'RealEstate deleted successfully.');
     }
 }
