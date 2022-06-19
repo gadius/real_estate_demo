@@ -21,13 +21,6 @@ class RealEstateControllerTest extends TestCase
     /** @test  */
     public function everyone_can_browse_realestate_index()
     {
-        /*
-        RealEstate::factory(5)->create();
-        $response = $this->get('/api/realestate');
-
-        $response->assertStatus(200);
-        */
-
         $this->json('get', 'api/realestate')
          ->assertStatus(Response::HTTP_OK);
     }
@@ -35,12 +28,7 @@ class RealEstateControllerTest extends TestCase
     /** @test  */
     public function everyone_can_browse_realestate_index_specific_columns()
     {
-        /*
         RealEstate::factory(5)->create();
-        $response = $this->get('/api/realestate');
-
-        $response->assertStatus(200);
-        */
 
         $this->json('get', 'api/realestate')
          ->assertStatus(Response::HTTP_OK)
@@ -62,43 +50,51 @@ class RealEstateControllerTest extends TestCase
     }
 
 
-    /** @test  */
-    /*
+    /** @test  */    
     public function everyone_can_create_realestate_store()
     {
-        //$response = $this->get('/api/realestate');
         $realestate_data = [
-            'name' => 'MX',
-            'real_state_type' => 'MX',
-            'street' => 'MX',
-            'external_number' => 'MX',
-            'internal_number' => 'MX',
-            'neighborhood' => 'MX',
-            'city' => 'MX',
+            'name' => 'Name testing',
+            'real_state_type' => 'house',
+            'street' => 'Street name and testing',
+            'external_number' => '123-123',
+            'internal_number' => '123-123',
+            'neighborhood' => 'neighborhood test',
+            'city' => 'La Paz',
             'country' => 'MX',
             'rooms' => 10,
             'bathrooms' => 12,
-            'comments' => 'MX',
+            'comments' => 'Comment testing',
         ];
 
-        $this->json('POST', 'api/realestate', $realestate_data, ['Accept' => 'application/json'])
-            ->assertStatus(201)
-            ->assertJson([
-                "realestate" => [
-                    'name' => 'MX',
-                    'real_state_type' => 'MX',
-                    'street' => 'MX',
-                    'external_number' => 'MX',
-                    'internal_number' => 'MX',
-                    'neighborhood' => 'MX',
-                    'city' => 'MX',
-                    'country' => 'MX',
-                    'rooms' => 10,
-                    'bathrooms' => 12,
-                    'comments' => 'MX',
-                ],
-                "message" => "Created successfully"
-            ]);
+
+
+        $this->json('post', 'api/realestate', $realestate_data,['Accept' => 'application/json'])
+         ->assertStatus(Response::HTTP_OK)
+         ->assertJsonStructure(
+            [
+                'data' => [
+                    'id',
+                    'name',
+                    'real_state_type',
+                    'street',
+                    'external_number',
+                    'internal_number',
+                    'neighborhood',
+                    'city',
+                    'country',
+                    'rooms',
+                    'bathrooms',
+                    'comments',
+                    'created_at',
+                    'updated_at',
+                    'deleted_at',
+                ]
+            ]
+        );
+         
+
+        $this->assertDatabaseHas('real_estates', $realestate_data);
     }
-    */
+    
 }

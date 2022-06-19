@@ -40,7 +40,7 @@ class RealEstateRequest extends FormRequest
             'real_state_type' => "required|in:house,department,land,commercial_ground",
             'street' => 'required|max:128',
             'external_number' => 'required|max:12|regex:/^[a-zA-Z0-9-]+$/',
-            'internal_number' => 'regex'.$internal_number_regex,
+            'internal_number' => 'regex:'.$internal_number_regex,
             'neighborhood' => 'required',
             'city' => 'required',
             'country' => 'required',
@@ -52,7 +52,7 @@ class RealEstateRequest extends FormRequest
         if($this->real_state_type == 'land' || $this->real_state_type == 'commercial_ground')
             $rules['bathrooms'] = 'required|min:0';
         if($this->real_state_type == 'department' || $this->real_state_type == 'commercial_ground')
-            $rules['internal_number'] = 'required:regex'.$internal_number_regex;
+            $rules['internal_number'] = 'required:regex:'.$internal_number_regex;
 
         return $rules;
     }
