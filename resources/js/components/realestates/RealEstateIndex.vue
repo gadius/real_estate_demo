@@ -1,4 +1,10 @@
 <template>
+    <div class="flex place-content-end mb-4">
+        <div class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase">
+            <router-link :to="{ name: 'realestates.create' }" class="text-sm font-medium">Create Real Estate</router-link>
+        </div>
+    </div>
+
     <div class="overflow-hidden overflow-x-auto min-w-full align-middle sm:rounded-md">
         <table class="min-w-full border divide-y divide-gray-200">
             <thead>
