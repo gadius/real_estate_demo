@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::resource('realestate', RealEstateController::class);
+Route::apiResource('realestate', RealEstateController::class);
