@@ -15,7 +15,7 @@ class RealEstateCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data' => $this->collection->transform(function($elem){
+            'realestates' => $this->collection->map(function($elem){
                 return [
                     'id' => $elem->id,
                     'name' => $elem->name,
@@ -23,8 +23,7 @@ class RealEstateCollection extends ResourceCollection
                     'city' => $elem->city,
                     'country' => $elem->country,
                 ];
-            }),
-            'meta' => ['element_count' => $this->collection->count()],
+            })            
         ];
     }
 }
