@@ -9,7 +9,7 @@
 
 ## About this Project
 
-This demo is an SPA CRUD example using the following features:
+This demo a SPA CRUD example using the following features:
 
 - Laravel9 + Sail with default Docker development environment.
 - VueJS3 + Composition API to create SPA CRUD
@@ -22,11 +22,11 @@ This demo is an SPA CRUD example using the following features:
 - How can i run Laravel9 + Sail on my local? 
 If you are going to use Sail to run this project on your local i strongly suggest you to use the composer docker image to install dependencies after you clone this repository.
 
-- How can i run VueJS on my local?
-First you must need NPM and NODE installed on your local, then 
-
 - How can i run commands using Sail?
 You have to add the word sail instead php in the most common commands, for example php artisan db:seed => sail artisan db:seed.
+
+- How can i run VueJS on my local?
+You need npm and node installed on your local, then you can run the command npm install and then npm run watch, if you are using Laravel Sail you should instead run sail npm install and sail npm run watch
 
 ## License
 
