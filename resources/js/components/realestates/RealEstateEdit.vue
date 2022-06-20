@@ -117,11 +117,16 @@
                 </div>
             </div>
         </div>
-
-        <button type="submit"
+        <div class="col mt-2">
+            <button type="submit"
                 class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase bg-gray-800 rounded-md border border-transparent ring-gray-300 transition duration-150 ease-in-out hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring disabled:opacity-25">
-            Update
-        </button>
+                Update
+            </button>
+            <router-link :to="{ name: 'realestates.index'}" class="bg-transparent ml-2 hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                Go back
+            </router-link>
+        </div>
+        
     </form>
 </template>
 

@@ -5,7 +5,7 @@ import RealEstateCreate from '../components/realestates/RealEstateCreate.vue'
 import RealEstateEdit from '../components/realestates/RealEstateEdit.vue'
 const routes = [
     {
-        path: '/dashboard',
+        path: '/',
         name: 'realestates.index',
         component: RealEstateIndex
     },
