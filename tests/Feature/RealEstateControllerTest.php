@@ -54,7 +54,11 @@ class RealEstateControllerTest extends TestCase
     /** @test  */    
     public function everyone_can_create_realestate_store()
     {        
-        $realestate_data = RealEstate::factory()->create()->toArray();    
+
+        $realestate_data = RealEstate::factory()->create([
+            'external_number' => '123-123-6',
+            'internal_number' => '123-123-6',
+        ])->toArray();    
 
         $this->json('post', 'api/realestate', $realestate_data,['Accept' => 'application/json'])
          ->assertStatus(Response::HTTP_OK);         

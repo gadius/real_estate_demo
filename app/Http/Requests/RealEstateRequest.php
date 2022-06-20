@@ -43,13 +43,13 @@ class RealEstateRequest extends FormRequest
             'neighborhood' => 'required|max:128',
             'city' => "required|max:64",
             'country' => "required|in:$iso3166_keys",
-            'rooms' => 'required|integer',   
-            'bathrooms' => 'required|numeric|not_in:0',
+            'rooms' => 'required|integer|between:-9999999999,9999999999',   
+            'bathrooms' => 'required|numeric|between:-999999.99,999999.99|not_in:0',
             'comments' => 'max:128',
         ];
 
         if($this->real_state_type == 'land' || $this->real_state_type == 'commercial_ground')
-            $rules['bathrooms'] = 'required|numeric';
+            $rules['bathrooms'] = 'required|numeric|between:-999999.99,999999.99';
         if($this->real_state_type == 'department' || $this->real_state_type == 'commercial_ground')
             $rules['internal_number'] = "required|regex:$internal_number_regex";
 
@@ -62,13 +62,6 @@ class RealEstateRequest extends FormRequest
     */
     public function failedValidation(Validator $validator)
     {
-        /*
-        throw new HttpResponseException(response()->json([
-            'success'   => false,
-            'message'   => 'Validation errors',
-            'data'      => $validator->errors()
-        ]));
-        */
         $errors = $validator->errors();
 
         throw new HttpResponseException(response()->json([
