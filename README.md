@@ -9,11 +9,11 @@
 
 ## About this Project
 
-This demo a SPA CRUD example using the following features:
+This demo is a SPA CRUD example using the following features:
 
 - Laravel9 + Sail with default Docker development environment.
 - VueJS3 + Composition API to create SPA CRUD
-- TDD with index, show, store, update and destroy actions
+- TDD with index, show, store, update and destroy feature test
 - Rule validations using Custom Request (RealEstateRequest)
 - Factory and database seeding.
 - Custom config file to validate ISO 3166-Alpha2 array
