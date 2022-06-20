@@ -37,7 +37,7 @@ export default function useRealEstates() {
     const destroyRealEstate = async (id) => {
         await axios.delete(`/api/realestate/${id}`)
     }
-    
+
     const updateRealEstate = async (id) => {
         errors.value = ''
         try {
