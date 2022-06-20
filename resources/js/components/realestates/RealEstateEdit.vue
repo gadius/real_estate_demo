@@ -101,7 +101,7 @@
             <div>
                 <label for="bathrooms" class="block text-sm font-medium text-gray-700">Bathrooms</label>
                 <div class="mt-1">
-                    <input type="number" name="bathrooms" required
+                    <input type="number" name="bathrooms" required step="0.01"
                            class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                            v-model="realestate.bathrooms">
                 </div>
