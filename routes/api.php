@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\RealEstateController;
+use App\Http\Controllers\PassportController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,9 +16,12 @@ use App\Http\Controllers\RealEstateController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('register', [PassportController::class, 'register']);
+Route::post('login', [PassportController::class, 'login']);
+
+Route::middleware('auth:api')->group(function () {
+    Route::apiResource('realestate', RealEstateController::class);
 });
 
 
-Route::apiResource('realestate', RealEstateController::class);
+ 
