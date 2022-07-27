@@ -23,5 +23,12 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('realestate', RealEstateController::class);
 });
 
+Route::get('cache', function(){
+    //return RealEstate cache but if it doesnt exist on first place it stores on cache;
+    return Cache::remember('realestates', 60*60, function(){
+        return App\Models\RealEstate::all();
+    });
+});
+
 
  
