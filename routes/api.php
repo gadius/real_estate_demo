@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\RealEstateController;
 use App\Http\Controllers\PassportController;
+
+use App\Jobs\TestLogJob;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -30,5 +32,17 @@ Route::get('cache', function(){
     });
 });
 
+
+Route::get('queue', function(){
+    //return RealEstate cache but if it doesnt exist on first place it stores on cache;
+
+    /* \Log::info(Carbon\Carbon::now()->format('Y-m-d H:i'));
+        return 'test1'; */
+
+    for($i = 0; $i < 5; $i++)
+        TestLogJob::dispatch()->delay(now()->addSeconds(5));
+    
+    return 'Queue Example done';
+});
 
  
